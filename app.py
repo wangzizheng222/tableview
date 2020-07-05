@@ -1,6 +1,6 @@
 import pymysql
 import yagmail
-from flask import Flask, render_template, json
+from flask import Flask, render_template, json, request
 
 
 def read_data(table_name):
@@ -72,6 +72,27 @@ def management():
     return render_template("Management.html")
 
 
+@app.route("/management/work_summary")
+def work_summary():
+    return render_template("Work_summary.html")
+
+
+@app.route("/management/work_summary/submit", methods=["POST", "GET"])
+def submit():
+    res = request.form
+    name = res["name"]
+    project = res["project"]
+    value = res["value"]
+    data = "name：" + name
+    data = data + "\nproject: " + project
+    data = data + "\nvalue: " + value
+    try:
+        yag = yagmail.SMTP(user="2804355025@qq.com", password="txklejrstsiadgeg", host="smtp.qq.com", )
+        yag.send("2804355025@qq.com", subject="工作总结——青协网站", contents=data)
+        return render_template("email_send_successfully.html")
+    except:
+        return render_template("email_send_failed.html")
+
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0")
-

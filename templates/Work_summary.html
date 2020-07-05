@@ -1,0 +1,46 @@
+<!doctype html> 
+<html lang="en" class="no-js"> 
+<head> 
+  <meta charset="utf-8" />
+  <title>主页</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <script type='text/javascript' src='/static/js/jquery-1.11.1.min.js'></script>
+  <script type='text/javascript' src='/static/js/jquery.particleground.min.js'></script>
+  <script type='text/javascript' src='/static/js/demo.js'></script>
+
+    <style>
+        textarea{
+            font-size: 20px;
+        }
+    </style>
+</head> 
+
+<body>
+
+
+
+<div id="particles">
+	<div class="intro">
+		<h1>Welcome to work summary</h1>
+
+        <form id="form" action="/management/work_summary/submit" method="post">
+            <label>姓名</label><textarea type="text" name="name" style="background-color: transparent;height: 40px"></textarea>
+            <label>项目</label><textarea type="text" name="project" style="background-color: transparent;height: 90px"></textarea>
+            <label>内容</label><textarea type="text" name="value" style="background-color: transparent;height: 90px"></textarea>
+        </form>
+        <br>
+
+        <a class="btn" onclick="submit()">submit</a>
+	</div>
+
+</div>
+
+<script>
+    function submit() {
+        document.getElementById("form").submit()
+    }
+</script>
+
+</body> 
+</html> 
