@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Table</title>
+    <style>
+        #header{
+            background-color: black;
+            float: top;
+        }
+        #foot{
+            float: bottom;
+            background-color: black;
+        }
+        #header_font{
+            color: white;
+            alignment: center;
+            text-align: center;
+        }
+        #foot_font{
+            color: white;
+            alignment: center;
+            text-align: center;
+        }
+        #search_model{
+            font-size: medium;
+        }
+        #search_res{
+            padding: 25px;
+        }
+        #search_button{
+            background-color: #7e3ae3;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 17px;
+        }
+        #callback_button{
+            background-color: #7e3ae3;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 17px;
+        }
+        #table{
+            padding: 20px;
+        }
+        #back_button{
+            background-color: #7e3ae3;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 17px;
+        }
+
+    </style>
+</head>
+<body bgcolor="aqua">
+
+
+<div id="header">
+    <h1 id="header_font">Welcome to my website</h1>
+</div>
+
+<div id="search_model" align="center">
+    <input style="width: 200px;height: 40px;font-size: 17px" type="text" name="name" id="search" placeholder="请输入姓名或学号" onkeydown="if(event.keyCode===13) {get_search()}">
+    <button id="search_button" onclick="get_search()">查找</button>
+    <button id="callback_button" onclick="goto_callback()">反馈问题</button>
+    <button id="back_button" onclick="goto_index()">回到主页</button>
+
+    <table id="search_res">
+    </table>
+</div>
+
+<hr>
+<hr>
+
+<table id="table">
+</table>
+
+<div id="foot">
+    <h3 id="foot_font">CQUT 两江人工智能学院青年志愿者协会</h3>
+</div>
+
+<script>
+    function goto_callback() {
+        window.location.href="callback_new"
+    }
+    function goto_index() {
+        window.location.href="welcome"
+    }
+    
+    function get_search(){
+        let i=0
+        const search_data = [];
+        search_data[0]=[]
+        search_data[0][0]="empty"
+        let name = document.getElementById("search").value.toString();
+        if (name.length===0){
+            name="empty"
+        }
+
+        if (isNaN(name)){
+            for (let j=0;j<res.length;j++){
+                if (res[j][0].toString().search(name)>=0){
+                    search_data[i]=[]
+                    for (let k=0;k<8;k++){
+                        search_data[i][k]=res[j][k]
+                        }
+                i=i+1
+                }
+        }
+        }
+        else {
+            for (let j=0;j<res.length;j++){
+                if (res[j][4]!=null){
+                    if (res[j][4].toString().search(name)>=0){
+                        search_data[i]=[]
+                        for (let k=0;k<8;k++){
+                            search_data[i][k]=res[j][k]
+                            }
+                        i=i+1
+            }
+                }
+        }
+        }
+        let result = "<tr align='center'>" +
+                "<td width='60' bgcolor='#ffd700' height='40'>" + "姓名" + "</td>" +
+                "<td bgcolor='#ffd700' width='60'>" +  "性别" + "</td>" +
+                "<td width='150' bgcolor='#ffd700'>" + "学院" + "</td>" +
+                "<td width='50' bgcolor='#ffd700'>" + "年级" + "</td>" +
+                "<td width='120' bgcolor='#ffd700'>" + "学号" + "</td>" +
+                "<td width='120' bgcolor='#ffd700'>" + "电话" + "</td>" +
+                "<td width='60' bgcolor='#ffd700'>" + "时长" + "</td>" +
+                "<td width='800' bgcolor='#ffd700'>" + "志愿活动" + "</td>" +
+                "</tr>";
+        let new_data;
+        if (search_data[0][0]!=="empty"){
+            for (let i = 0; i < search_data.length; i++) {
+            if (i%2===0){
+                new_data = "<tr align='center'>" +
+                "<td width='60' bgcolor='#f5f5dc' height='40'>" + search_data[i][0] + "</td>" +
+                "<td bgcolor='#f0f8ff'>" + search_data[i][1] + "</td>" +
+                "<td width='150' bgcolor='#faebd7'>" + search_data[i][2] + "</td>" +
+                "<td width='50' bgcolor='#f0f8ff'>" + search_data[i][3] + "</td>" +
+                "<td width='120' bgcolor='#faebd7'>" + search_data[i][4] + "</td>" +
+                "<td width='120' bgcolor='#f0f8ff'>" + search_data[i][5] + "</td>" +
+                "<td width='60' bgcolor='#faebd7'>" + search_data[i][6] + "</td>" +
+                "<td width='800' bgcolor='#f0f8ff'>" + search_data[i][7] + "</td>" +
+                "</tr>";
+            }
+            else {
+                new_data = "<tr align='center'>" +
+                "<td width='60' bgcolor='#f0f8ff' height='40'>" + search_data[i][0] + "</td>" +
+                "<td bgcolor='#faebd7'>" + search_data[i][1] + "</td>" +
+                "<td width='150' bgcolor='#f0f8ff'>" + search_data[i][2] + "</td>" +
+                "<td width='50' bgcolor='#faebd7'>" + search_data[i][3] + "</td>" +
+                "<td width='120' bgcolor='#f0f8ff'>" + search_data[i][4] + "</td>" +
+                "<td width='120' bgcolor='#faebd7'>" + search_data[i][5] + "</td>" +
+                "<td width='60' bgcolor='#f0f8ff'>" + search_data[i][6] + "</td>" +
+                "<td width='800' bgcolor='#faebd7'>" + search_data[i][7] + "</td>" +
+                "</tr>";
+            }
+
+
+
+            result = result + new_data
+
+        }
+        document.getElementById("search_res").innerHTML=result
+        }
+        else {
+            result="<p style='font-size: 20px'>未找到数据</p>"
+            document.getElementById("search_res").innerHTML=result
+        }
+        }
+
+    res = eval({{res|safe}})
+    let result = "<tr align='center'>" +
+                "<td width='60' bgcolor='#ffd700' height='40'>" + "姓名" + "</td>" +
+                "<td bgcolor='#ffd700' width='60'>" +  "性别" + "</td>" +
+                "<td width='150' bgcolor='#ffd700'>" + "学院" + "</td>" +
+                "<td width='50' bgcolor='#ffd700'>" + "年级" + "</td>" +
+                "<td width='120' bgcolor='#ffd700'>" + "学号" + "</td>" +
+                "<td width='120' bgcolor='#ffd700'>" + "电话" + "</td>" +
+                "<td width='60' bgcolor='#ffd700'>" + "时长" + "</td>" +
+                "<td width='800' bgcolor='#ffd700'>" + "志愿活动" + "</td>" +
+                "</tr>";
+
+    let new_data;
+    for (let i = 0; i < res.length; i++) {
+        if (i%2===0){
+            new_data = "<tr align='center'>" +
+            "<td width='60' bgcolor='#f5f5dc' height='40'>" + res[i][0] + "</td>" +
+            "<td bgcolor='#f0f8ff'>" + res[i][1] + "</td>" +
+            "<td width='150' bgcolor='#faebd7'>" + res[i][2] + "</td>" +
+            "<td width='50' bgcolor='#f0f8ff'>" + res[i][3] + "</td>" +
+            "<td width='120' bgcolor='#faebd7'>" + res[i][4] + "</td>" +
+            "<td width='120' bgcolor='#f0f8ff'>" + res[i][5] + "</td>" +
+            "<td width='60' bgcolor='#faebd7'>" + res[i][6] + "</td>" +
+            "<td width='800' bgcolor='#f0f8ff'>" + res[i][7] + "</td>" +
+            "</tr>";
+        }
+        else {
+            new_data = "<tr align='center'>" +
+            "<td width='60' bgcolor='#f0f8ff' height='40'>" + res[i][0] + "</td>" +
+            "<td bgcolor='#faebd7'>" + res[i][1] + "</td>" +
+            "<td width='150' bgcolor='#f0f8ff'>" + res[i][2] + "</td>" +
+            "<td width='50' bgcolor='#faebd7'>" + res[i][3] + "</td>" +
+            "<td width='120' bgcolor='#f0f8ff'>" + res[i][4] + "</td>" +
+            "<td width='120' bgcolor='#faebd7'>" + res[i][5] + "</td>" +
+            "<td width='60' bgcolor='#f0f8ff'>" + res[i][6] + "</td>" +
+            "<td width='800' bgcolor='#faebd7'>" + res[i][7] + "</td>" +
+            "</tr>";
+        }
+
+        result = result + new_data
+    }
+
+    document.getElementById("table").innerHTML=result
+
+</script>
+
+</body>

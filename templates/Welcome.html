@@ -1,0 +1,38 @@
+<!doctype html> 
+<html lang="en" class="no-js"> 
+<head> 
+  <meta charset="utf-8" />
+  <title>主页</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <script type='text/javascript' src='/static/js/jquery-1.11.1.min.js'></script>
+  <script type='text/javascript' src='/static/js/jquery.particleground.min.js'></script>
+  <script type='text/javascript' src='/static/js/demo.js'></script>
+</head> 
+
+<body>
+
+<div id="particles">
+	<div class="intro">
+		<h1>Select your service</h1>
+        <a class="btn" onclick="check()">check table</a>
+        <a class="btn" onclick="callback()">callback</a>
+        <a class="btn" onclick="management()">management</a>
+	</div>
+
+</div>
+
+<script>
+    function check() {
+        window.location.href="/table"
+    }
+    function callback() {
+        window.location.href="/callback_new"
+    }
+    function management() {
+        window.location.href="/management"
+    }
+</script>
+
+</body> 
+</html> 

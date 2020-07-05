@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Callback</title>
+
+
+    <style>
+        #header{
+            background-color: black;
+            float: top;
+        }
+        #foot{
+            float: bottom;
+            background-color: black;
+        }
+        #header_font{
+            color: white;
+            alignment: center;
+            text-align: center;
+        }
+        #foot_font{
+            color: white;
+            alignment: center;
+            text-align: center;
+        }
+        #value{
+            width: 1200px;
+            height: 600px;
+            font-size: 20px;
+        }
+        #submit_area{
+            color: beige;
+            float: right;
+            width: 100px;
+            height: 600px;
+        }
+        #submit{
+            background-color: #7e3ae3;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 17px;
+        }
+        #header_font_2{
+            color: white;
+            alignment: center;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<script>
+    function submit() {
+        var data = document.getElementById("value").value;
+        for (let i=0;i<50;i++){
+            data=data.replace("/",",")
+            data=data.replace("\\",",")
+            data=data.replace("?","(问号)")
+            data=data.replace("=","(等于号)")
+        }
+        window.location.href="/callback/submit_callback/"+data
+    }
+</script>
+
+<div id="header">
+    <h1 id="header_font">Welcome to my website</h1>
+    <h2 id="header_font_2">请填写反馈意见和数据中存在的错误，并留下您的联系方式</h2>
+</div>
+
+<textarea id="value" maxlength="2048">
+</textarea>
+
+<div id="submit_area">
+    <button id="submit" onclick="submit()">提交</button>
+</div>
+
+<div id="foot">
+    <h3 id="foot_font">CQUT 两江人工智能学院青年志愿者协会</h3>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html> 
+<html lang="en" class="no-js"> 
+<head> 
+  <meta charset="utf-8" />
+  <title>意见反馈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <script type='text/javascript' src='/static/js/jquery-1.11.1.min.js'></script>
+  <script type='text/javascript' src='/static/js/jquery.particleground.min.js'></script>
+  <script type='text/javascript' src='/static/js/demo.js'></script>
+
+    <style>
+        #value{
+            width: 1000px;
+            height: 400px;
+            font-size: 20px;
+        }
+        .btn{
+            float: right;
+            alignment: center;
+        }
+    </style>
+</head> 
+
+<body>
+
+<div id="particles">
+	<div class="intro">
+        <h1 id="head">Welcome to callback</h1>
+        <h2>请输入反馈意见</h2>
+        <textarea style="background-color: transparent" id="value"></textarea>
+        <a class="btn" onclick="submit()">submit</a>
+	</div>
+
+</div>
+
+<script>
+    function login() {
+        window.location.href=""
+    }
+    function submit() {
+        var data = document.getElementById("value").value;
+        for (let i=0;i<50;i++){
+            data=data.replace("/",",")
+            data=data.replace("\\",",")
+            data=data.replace("?","(问号)")
+            data=data.replace("=","(等于号)")
+        }
+        window.location.href="/callback/submit_callback/"+data
+    }
+</script>
+
+</body> 
+</html> 
