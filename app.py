@@ -2,9 +2,7 @@ import os
 
 import pymysql
 import yagmail
-from flask import Flask, render_template, json, request, flash
-from werkzeug.utils import secure_filename
-import bottle
+from flask import Flask, render_template, json, request
 
 
 def read_data(table_name):
