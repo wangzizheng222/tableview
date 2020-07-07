@@ -85,10 +85,12 @@ def submit_apply():
     if request.method == "POST":
         f = request.files.get("table")
         basepath = os.path.dirname(__file__)  # 当前文件所在路径
-        print(f)
+        # print(f)
         # upload_path = os.path.join(basepath, 'static', secure_filename(f.filename))
         upload_path = os.path.join(basepath, 'static', f.filename)
         f.save(upload_path)
+        yag = yagmail.SMTP(user="2804355025@qq.com", password="txklejrstsiadgeg", host="smtp.qq.com", )
+        yag.send("2804355025@qq.com", subject="申请表", contents=upload_path)
     return render_template("email_send_successfully.html")
 
 
