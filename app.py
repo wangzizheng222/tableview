@@ -1,6 +1,10 @@
+import os
+
 import pymysql
 import yagmail
-from flask import Flask, render_template, json, request
+from flask import Flask, render_template, json, request, flash
+from werkzeug.utils import secure_filename
+import bottle
 
 
 def read_data(table_name):
@@ -24,6 +28,7 @@ def read_data(table_name):
 
 
 app = Flask(__name__)
+app.secret_key = "123"
 
 
 @app.route("/table")
@@ -65,6 +70,28 @@ def welcome():
 @app.route("/callback_new")
 def callback_new():
     return render_template("Callback_new.html")
+
+
+@app.route("/apply")
+def apply():
+    return render_template("Apply_list.html")
+
+
+@app.route("/apply/apply_table")
+def apply_table():
+    return render_template("Apply_table.html")
+
+
+@app.route("/apply/submit", methods=["POST", "GET"])
+def submit_apply():
+    if request.method == "POST":
+        f = request.files.get("table")
+        basepath = os.path.dirname(__file__)  # 当前文件所在路径
+        print(f)
+        # upload_path = os.path.join(basepath, 'static', secure_filename(f.filename))
+        upload_path = os.path.join(basepath, 'static', f.filename)
+        f.save(upload_path)
+    return render_template("email_send_successfully.html")
 
 
 @app.route("/management")

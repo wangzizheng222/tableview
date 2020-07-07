@@ -1,0 +1,110 @@
+<!doctype html> 
+<html lang="en" class="no-js"> 
+<head> 
+  <meta charset="utf-8" />
+  <title>主页</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <script type='text/javascript' src='/static/js/jquery-1.11.1.min.js'></script>
+  <script type='text/javascript' src='/static/js/jquery.particleground.min.js'></script>
+  <script type='text/javascript' src='/static/js/demo.js'></script>
+    <style>
+        input[type="text"],input[type="password"]{
+            font-size: 1em;
+            color: #fff;
+            font-weight:100;
+            border: none;
+            border-bottom: solid 3px #fff;
+            background-color: transparent;
+            width: 240px;
+            height: 60px;
+            text-align: center;
+}
+        input[type="file"]{
+            background-color: transparent;
+            border: none;
+            width: 240px;
+            height: 60px;
+        }
+        .text:focus, .text:valid {
+            box-shadow: none;
+            outline: none;
+            background-position: 0 0;
+}
+
+
+
+
+    </style>
+</head> 
+
+<body>
+
+<div id="particles">
+	<div class="intro">
+		<h1>Welcome to apply table</h1>
+        <form action="/apply/submit" method="post" id="form" enctype="multipart/form-data">
+            <table id="table" style="margin: 0 auto">
+                <tr>
+                    <td>
+                        <label>姓名</label>
+                        <input type="text" class="text" name="name">
+                    </td>
+
+                    <td>
+                        <label>学号</label>
+                        <input type="text" class="text" name="xuehao">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>电话</label>
+                        <input type="text" class="text" name="phone_number">
+                    </td>
+
+                    <td>
+                        <label>专业</label>
+                        <input type="text" class="text" name="zhuanye">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>年级</label>
+                        <input type="text" class="text" name="nianji">
+                    </td>
+
+                    <td>
+                        <label>学院</label>
+                        <input type="text" class="text" name="xueyuan">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input id="table_load" type="file" name="table" accept=".xls,.xlsx" hidden>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <p id="table_name"></p>
+        <a class="btn" onclick="onload_table()">上传报名表</a>
+        <a class="btn" onclick="submit()">submit</a>
+	</div>
+
+</div>
+
+<script>
+    function submit() {
+        document.getElementById("form").submit()
+    }
+    function onload_table() {
+        document.getElementById("table_load").click()
+        document.getElementById("table_name").innerText="已上传文件"
+    }
+</script>
+
+</body> 
+</html> 
